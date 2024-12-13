@@ -5,16 +5,19 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY auth-service/package*.json ./
+COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm install
 
+# Copy the .env file
+COPY .env /app/.env
+
 # Copy the rest of the application
-COPY auth-service/ .
+COPY . .
 
 # Expose the port the service runs on
-EXPOSE 3001
+EXPOSE 3002
 
 # Start the application
 CMD ["npm", "start"]

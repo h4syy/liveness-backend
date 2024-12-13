@@ -1,7 +1,7 @@
 import {
   createLivenessSessionService,
   getLivenessSessionResultsService,
-} from "../services/liveness-service.js";
+} from "../service/liveness-service.js";
 
 export const createLivenessSession = async (req, res) => {
   try {

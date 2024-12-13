@@ -36,27 +36,31 @@ export const getLivenessSessionResultsService = async (sessionId) => {
     const command = new GetFaceLivenessSessionResultsCommand(input);
     const response = await rekognitionClient.send(command);
 
-    if (response) {
-      await postLivenessData(response);
+    // if (response) {
+    //   await postLivenessData(response);
 
-      const firstImageBytes = response.ReferenceImage.Bytes;
-      if (firstImageBytes) {
-        const buffer = Buffer.from(Object.values(firstImageBytes));
+    //   const firstImageBytes = response.ReferenceImage.Bytes;
+    //   if (firstImageBytes) {
+    //     const buffer = Buffer.from(Object.values(firstImageBytes));
 
-        const filePath = `datastore/abcd${Math.random()
-          .toString()
-          .replace(".", "")}audit-image-2.jpg`;
-        fs.writeFileSync(filePath, buffer);
-      }
+    //     const filePath = `datastore/abcd${Math.random()
+    //       .toString()
+    //       .replace(".", "")}audit-image-2.jpg`;
+    //     fs.writeFileSync(filePath, buffer);
+    //   }
 
-      return {
-        response,
-        message:
-          "Liveness session results retrieved and first audit image saved successfully",
-      };
-    } else {
-      return null;
-    }
+    //   return {
+    //     response,
+    //     message:
+    //       "Liveness session results retrieved and first audit image saved successfully",
+    //   };
+    // } else {
+    //   return null;
+    // }
+    return {
+      message: "session fetched successfully",
+      result: response,
+    };
   } catch (error) {
     console.error("AWS Rekognition Error: ", error);
     throw new Error("AWS Rekognition service failed");
