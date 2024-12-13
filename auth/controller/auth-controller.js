@@ -1,4 +1,4 @@
-import { createAuthToken } from "../services/auth-service.js";
+import { createAuthToken } from "../../services/auth-service.js";
 
 const startAuth = (req, res) => {
   const { mobile_number } = req.body;

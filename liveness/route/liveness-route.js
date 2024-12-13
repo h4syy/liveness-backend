@@ -3,7 +3,7 @@ import {
   createLivenessSession,
   getLivenessSessionResults,
 } from "../controllers/liveness-controller.js";
-import { verifyJWT } from "../middlewares/auth.js";
+import { verifyJWT } from "../../middlewares/auth.js";
 
 const router = express.Router();
 
