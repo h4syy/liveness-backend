@@ -3,8 +3,8 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
-import livenessRoutes from "./liveness/route/liveness-route.js";
-import authRoutes from "./auth/route/auth-route.js";
+import livenessRoutes from "./liveness-service/route/liveness-route.js";
+import authRoutes from "./auth-service/route/auth-route.js";
 
 const app = express();
 const PORT = process.env.PORT || 8757;
