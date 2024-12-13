@@ -7,7 +7,11 @@ import { verifyJWT } from "../../middlewares/auth.js";
 
 const router = express.Router();
 
-router.post("/create-liveness-session", verifyJWT, createLivenessSession);
-router.post("/results", verifyJWT, getLivenessSessionResults);
+router.post(
+  "/liveness/create-liveness-session",
+  verifyJWT,
+  createLivenessSession
+);
+router.post("/liveness/results", verifyJWT, getLivenessSessionResults);
 
 export default router;

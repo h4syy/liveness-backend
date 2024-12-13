@@ -3,6 +3,6 @@ import { startAuth } from "../controller/auth-controller.js";
 
 const router = Router();
 
-router.post("/start-auth", startAuth);
+router.post("/auth/start-auth", startAuth);
 
 export default router;

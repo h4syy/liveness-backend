@@ -3,18 +3,26 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
-import livenessRoutes from "./liveness-service/route/liveness-route.js";
-import authRoutes from "./auth-service/route/auth-route.js";
+import httpProxy from "express-http-proxy";
 
 const app = express();
 const PORT = process.env.PORT || 8757;
 
+// Microservice URLs
+const AUTH_SERVICE_URL = "http://localhost:3001";
+const LIVENESS_SERVICE_URL = "http://localhost:3002";
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/v1/liveness", livenessRoutes);
-app.use("/api/v1/auth", authRoutes);
+// Route to Auth Service
+app.use("/api/v1/auth", httpProxy(AUTH_SERVICE_URL));
 
+// Route to Liveness Service
+app.use("/api/v1/liveness", httpProxy(LIVENESS_SERVICE_URL));
+
+// Global Error Handler
 app.use((err, req, res, next) => {
   console.error("Global Error Handler: ", err);
   res.status(500).json({
@@ -23,6 +31,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Start Gateway
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Gateway is running on http://localhost:${PORT}`);
 });
