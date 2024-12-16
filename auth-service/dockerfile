@@ -17,7 +17,7 @@ COPY .env /app/.env
 COPY . .
 
 # Expose the port the service runs on
-EXPOSE 3002
+EXPOSE 3001
 
 # Start the application
 CMD ["npm", "start"]
